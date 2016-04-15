@@ -89,7 +89,7 @@ case "$1" in
 'vm')
     case "$2" in
     'index')
-        output_item 'connect' "vm connect $3" 'Connect' 'Connect with VMware Remote Console'
+        output_item 'connect-vmrc' "vm connect vmrc $3" 'Connect to Console' 'Connect with VMware Remote Console'
 
         cache "vmsvc/power.getstate $3" '5s'
         POWERSTATUS=$(tail +2 "$CACHE_FILE")
@@ -98,10 +98,15 @@ case "$1" in
             output_info "$VALUE"
 
             extract_for 'ipAddress = "'
-            output_info "$VALUE" "IP: $VALUE"
+            IP="$VALUE"
+            output_info "$IP" "IP: $IP"
 
             extract_for 'guestFullName'
             output_info "$VALUE" "$VALUE"
+
+            if [[ $VALUE == *"Windows"* ]]; then
+            	output_item 'connect-rdc' "vm connect rdc $IP" 'Connect to Remote Desktop' 'Connect with Remote Desktop Client'
+            fi
         fi
         output_item "power-$3" "call vm-power $3" "Power Status: $POWERSTATUS" "Enter to change power status"
         output_item 'esxi-host-list' 'call host-list' 'Return to VM List' 'Get all VMs on ESXi host'
@@ -123,7 +128,12 @@ case "$1" in
         output_message "Power operation completed: $4"
         ;;
     'connect')
-        open "vmrc://$ESXI_HOST:443/?moid=$3"
+		if [ "$3" == 'vmrc' ]; then
+        	open "vmrc://$ESXI_HOST:443/?moid=$4"
+        elif [ "$3" == 'rdc' ]; then
+        	# see https://technet.microsoft.com/en-us/library/dn690096.aspx
+        	open "rdp://full%20address=s:$4:3389&connect%20to%20console=i:1"
+        fi
         ;;
     esac
         ;;

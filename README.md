@@ -25,9 +25,9 @@ Use `esxi` to get started. You'll be prompted to setup the config (just one line
 - `vm-power <vmid>`: Get and set power status for virtual machine
 
 
-
 ## Change log
 
+- v1.1: Support Remote Desktop Connection for Windows installed VMs
 - v1.0: Initial version
 
 ---
