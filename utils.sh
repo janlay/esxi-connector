@@ -20,7 +20,7 @@ cache() {
     [ -z "$3" ] || cmd="$3"
 
     local FILENAME=`echo "$1" | tr \ / _`
-    local FILEPATH="$CACHE_DIR/$FILENAME"
+    local FILEPATH="$CACHE_DIR/cache_$FILENAME"
 
     # echo "cmd: find \"$FILEPATH\" -type f -mtime +$cachevalidin -print0"
     find "$FILEPATH" -type f -mtime +$cachevalidin -print0 2> /dev/null | xargs -0 rm

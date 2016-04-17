@@ -159,8 +159,14 @@ case "$1" in
     output_message 'Save file and try again'
     ;;
 'clear')
-    [ -n "$CACHE_DIR" ] && [ -d "$CACHE_DIR" ] && rm -rf "$CACHE_DIR"
-    output_message 'Cache cleared'
+	if [ ! -d "$CACHE_DIR" ]; then
+		output_message "Cache directory does not exist: $CACHE_DIR, you need to RESET Alfred"
+		exit 1
+	fi
+
+    counter=$(find "$CACHE_DIR" -path "*/cache_*" -type f 2> /dev/null | wc -l | xargs)
+    find "$CACHE_DIR" -path "*/cache_*" -type f -print0 2> /dev/null | xargs -0 rm
+    output_message "$counter cached items cleared"
     ;;
 'copy')
     shift
