@@ -19,7 +19,7 @@ cache() {
     local cmd='vim-cmd'
     [ -z "$3" ] || cmd="$3"
 
-    local FILENAME=`echo "$cmd $1" | tr \ / _`
+    local FILENAME=`echo "$1" | tr \ / _`
     local FILEPATH="$CACHE_DIR/$FILENAME"
 
     # echo "cmd: find \"$FILEPATH\" -type f -mtime +$cachevalidin -print0"

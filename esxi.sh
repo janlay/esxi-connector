@@ -8,6 +8,14 @@ case "$1" in
 '' | 'host')
     case "$2" in
     '' | 'index')
+		cache 'system version get' '1d' 'esxcli --formatter=keyvalue'
+		Product="$(grep Product "$CACHE_FILE" | cut -d= -f2)"
+		Version="$(grep Version.string "$CACHE_FILE" | cut -d= -f2)"
+		Build="$(grep Build "$CACHE_FILE" | cut -d- -f2)"
+		Update="$(grep Update "$CACHE_FILE" | cut -d= -f2)"
+		Patch="$(grep Patch "$CACHE_FILE" | cut -d= -f2)"
+		output_info "$Build" "$Product $Version Update $Update" "ESXi build number: $Build, Patch: $Patch"
+
         output_item 'esxi-host-list' 'call host-list' 'List Virtual Machines' 'Get all VMs on ESXi host'
         output_item 'esxi-host-hw' 'call host-hw' 'Get Hardware Info' 'Get Some useful hardware info'
         # output_item 'esxi-host-sw' 'call host-sw' 'Get Software Info' 'Get Some useful software info'
@@ -117,8 +125,8 @@ case "$1" in
         output_info '' "Power Status: $POWERSTATUS"
         [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-suspend-$3" "vm change-power $3 suspend" "Suspend"
         [ "$POWERSTATUS" != 'Powered on' ] && output_item "power-on-$3" "vm change-power $3 on" "Power On"
-        [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-shutdown-$3" "vm change-power $3 shutdown" "Shut Down Guest OS"
-        [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-reboot-$3" "vm change-power $3 reboot" "Restart Guest OS"
+        [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-shutdown-$3" "vm change-power $3 shutdown" 'Gracefully Shutdown Guest OS'
+        [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-reboot-$3" "vm change-power $3 reboot" 'Gracefully Restart Guest OS'
         [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-off-$3" "vm change-power $3 off" "Power Off"
         [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-reset-$3" "vm change-power $3 reset" "Reset"
         output_item "vm-$3" "call vm $3" 'Return to Virtual Machine' "vmid: $3"
