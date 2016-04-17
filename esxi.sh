@@ -26,6 +26,7 @@ case "$1" in
         output_flush
         cache 'vmsvc/getallvms'
         cat "$CACHE_FILE" | tail +2 | cut -c 1-24 | grep -i "$QUERY" | awk -f vmrc.awk
+        output_item 'esxi-host-index' 'call esxi' 'Return to ESXi Home'
         ;;
     'hw')
         cache 'hostsvc/hosthardware' '1m'
@@ -71,6 +72,7 @@ case "$1" in
         cache 'hardware clock get' '5s' 'esxcli'
         CLOCK="$(cat "$CACHE_FILE")"
         output_info "$CLOCK" "Clock: $CLOCK"
+        output_item 'esxi-host-index' 'call esxi' 'Return to ESXi Home'
         ;;
     "hw-pci")
         QUERY="$(echo "$3" | xargs)"
@@ -92,6 +94,8 @@ case "$1" in
             output_info "$name" "$name" "verdor: ${VENDORS[$i]}, id: ${IDS[$i]}, deviceId: ${DEVICEIDS[$i]}"
         done
 
+        output_item 'esxi-host-hw' 'call host-hw' 'Return to Hardware Info' 'Get Some useful hardware info'
+        ;;
     esac
     ;;
 'vm')
@@ -124,9 +128,11 @@ case "$1" in
         POWERSTATUS=$(tail +2 "$CACHE_FILE")
         output_info '' "Power Status: $POWERSTATUS"
         [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-suspend-$3" "vm change-power $3 suspend" "Suspend"
-        [ "$POWERSTATUS" != 'Powered on' ] && output_item "power-on-$3" "vm change-power $3 on" "Power On"
-        [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-shutdown-$3" "vm change-power $3 shutdown" 'Gracefully Shutdown Guest OS'
-        [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-reboot-$3" "vm change-power $3 reboot" 'Gracefully Restart Guest OS'
+        powerontitle='Power On'
+        [ "$POWERSTATUS" == 'Powered off' ] || powerontitle='Resume'
+        [ "$POWERSTATUS" != 'Powered on' ] && output_item "power-on-$3" "vm change-power $3 on" "$powerontitle"
+        [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-shutdown-$3" "vm change-power $3 shutdown" 'Shutdown' 'Gracefully Shutdown Guest OS'
+        [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-reboot-$3" "vm change-power $3 reboot" 'Restart' 'Gracefully Restart Guest OS'
         [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-off-$3" "vm change-power $3 off" "Power Off"
         [ "$POWERSTATUS" == 'Powered on' ] && output_item "power-reset-$3" "vm change-power $3 reset" "Reset"
         output_item "vm-$3" "call vm $3" 'Return to Virtual Machine' "vmid: $3"

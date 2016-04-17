@@ -23,7 +23,7 @@ cache() {
     local FILEPATH="$CACHE_DIR/$FILENAME"
 
     # echo "cmd: find \"$FILEPATH\" -type f -mtime +$cachevalidin -print0"
-    find "$FILEPATH" -type f -mtime +$cachevalidin -print0 | xargs -0 rm
+    find "$FILEPATH" -type f -mtime +$cachevalidin -print0 2> /dev/null | xargs -0 rm
 
     [ -f "$FILEPATH" ] || ssh $ESXI_HOST "$cmd $1" > "$FILEPATH" 2>&1
     if [ $? -ne 0 ]; then
