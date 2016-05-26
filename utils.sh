@@ -3,8 +3,11 @@
 DEFAULT_CONFIG_DIR="$HOME/.ssh"
 DEFAULT_CONFIG_FILE="$DEFAULT_CONFIG_DIR/esxi"
 
+ALFREDVERSION="2"
+[ -d "/Applications/Alfred 3.app" ] && ALFREDVERSION="3"
+
 OUTPUT=()
-CACHE_DIR="$HOME/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/com.janlay.esxi"
+CACHE_DIR="$HOME/Library/Caches/com.runningwithcrayons.Alfred-$ALFREDVERSION/Workflow Data/com.janlay.esxi"
 init() {
     # init caching
     [ -d "$CACHE_DIR" ] || mkdir "$CACHE_DIR"

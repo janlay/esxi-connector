@@ -178,7 +178,7 @@ case "$1" in
     ;;
 'call')
     shift
-    osascript -e "tell application \"Alfred 2\" to search \"$* \""
+    osascript -e "tell application \"Alfred $ALFREDVERSION\" to search \"$* \""
     exit 0
     ;;
 esac

@@ -17,6 +17,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>64CC5118-35CF-45F8-BC53-21765FB7E013</key>
@@ -28,6 +30,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>717093A2-3653-4DE4-B97A-18D7CF126DD5</key>
@@ -39,6 +43,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>7E7F9067-A94F-44FA-B9B4-0EE5FF86FAF0</key>
@@ -50,6 +56,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>B0D2C6FF-DD4C-4CAD-B4A3-6841206F4413</key>
@@ -61,6 +69,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>B967C372-7761-4BF9-B4E0-C79F0B3626FD</key>
@@ -72,6 +82,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>CABF7158-6912-411E-9761-9E6F8497B9C6</key>
@@ -83,13 +95,15 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Janlay Wu</string>
 	<key>description</key>
-	<string>Works together with your ESXi Server v1.1.3</string>
+	<string>Works together with your ESXi Server v1.2</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -99,6 +113,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -119,6 +135,10 @@
 				<string>#!/bin/sh
 
 sh esxi.sh host hw "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Get Some useful hardware info</string>
 				<key>title</key>
@@ -133,11 +153,13 @@ sh esxi.sh host hw "{query}"</string>
 			<key>uid</key>
 			<string>717093A2-3653-4DE4-B97A-18D7CF126DD5</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -157,6 +179,10 @@ sh esxi.sh host hw "{query}"</string>
 				<key>script</key>
 				<string># echo "query: {query}"
 sh esxi.sh host list "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Get all VMs on ESXi host</string>
 				<key>title</key>
@@ -171,11 +197,13 @@ sh esxi.sh host list "{query}"</string>
 			<key>uid</key>
 			<string>7E7F9067-A94F-44FA-B9B4-0EE5FF86FAF0</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -196,6 +224,12 @@ sh esxi.sh host list "{query}"</string>
 				<string>#!/bin/sh
 
 sh esxi.sh host hw-pci "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
 				<key>title</key>
 				<string>List All PCI Devices</string>
 				<key>type</key>
@@ -208,7 +242,7 @@ sh esxi.sh host hw-pci "{query}"</string>
 			<key>uid</key>
 			<string>29D790D1-C726-4D9C-B85C-C44202671369</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -217,11 +251,7 @@ sh esxi.sh host hw-pci "{query}"</string>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
 				<true/>
-				<key>output</key>
-				<integer>0</integer>
 				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
 				<false/>
 				<key>text</key>
 				<string>{query}</string>
@@ -233,11 +263,13 @@ sh esxi.sh host hw-pci "{query}"</string>
 			<key>uid</key>
 			<string>0CA21F79-A60B-4FC4-8DBE-6DEDE354BDDD</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -258,6 +290,10 @@ sh esxi.sh host hw-pci "{query}"</string>
 				<string>#!/bin/sh
 
 sh esxi.sh {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Start to work together with your ESXi Server</string>
 				<key>title</key>
@@ -272,7 +308,7 @@ sh esxi.sh {query}</string>
 			<key>uid</key>
 			<string>B967C372-7761-4BF9-B4E0-C79F0B3626FD</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -283,6 +319,10 @@ sh esxi.sh {query}</string>
 				<integer>8</integer>
 				<key>script</key>
 				<string>sh esxi.sh {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -291,11 +331,13 @@ sh esxi.sh {query}</string>
 			<key>uid</key>
 			<string>CABF7158-6912-411E-9761-9E6F8497B9C6</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -316,6 +358,10 @@ sh esxi.sh {query}</string>
 				<string>#!/bin/sh
 
 sh esxi.sh vm index {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Call me only if you got the VM ID</string>
 				<key>title</key>
@@ -330,11 +376,13 @@ sh esxi.sh vm index {query}</string>
 			<key>uid</key>
 			<string>B0D2C6FF-DD4C-4CAD-B4A3-6841206F4413</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -355,6 +403,10 @@ sh esxi.sh vm index {query}</string>
 				<string>#!/bin/sh
 
 sh esxi.sh vm power {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Call me only if you got the VM ID.</string>
 				<key>title</key>
@@ -369,7 +421,7 @@ sh esxi.sh vm power {query}</string>
 			<key>uid</key>
 			<string>64CC5118-35CF-45F8-BC53-21765FB7E013</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -378,41 +430,57 @@ sh esxi.sh vm power {query}</string>
 	<dict>
 		<key>0CA21F79-A60B-4FC4-8DBE-6DEDE354BDDD</key>
 		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 		<key>29D790D1-C726-4D9C-B85C-C44202671369</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
 		<key>64CC5118-35CF-45F8-BC53-21765FB7E013</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>610</real>
 		</dict>
 		<key>717093A2-3653-4DE4-B97A-18D7CF126DD5</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>7E7F9067-A94F-44FA-B9B4-0EE5FF86FAF0</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>B0D2C6FF-DD4C-4CAD-B4A3-6841206F4413</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>490</real>
 		</dict>
 		<key>B967C372-7761-4BF9-B4E0-C79F0B3626FD</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 		<key>CABF7158-6912-411E-9761-9E6F8497B9C6</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
