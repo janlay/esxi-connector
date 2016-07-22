@@ -148,6 +148,7 @@ case "$1" in
         	# see https://technet.microsoft.com/en-us/library/dn690096.aspx
         	open "rdp://full%20address=s:$4:3389&connect%20to%20console=i:1"
         fi
+        exit 0
         ;;
     esac
         ;;

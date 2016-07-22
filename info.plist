@@ -103,7 +103,7 @@
 	<key>createdby</key>
 	<string>Janlay Wu</string>
 	<key>description</key>
-	<string>Works together with your ESXi Server v1.2</string>
+	<string>Works together with your ESXi Server v1.2.1</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
