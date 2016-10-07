@@ -27,6 +27,7 @@ Use `esxi` to get started. You'll be prompted to setup the config (just one line
 
 ## Change log
 
+- v1.2.2: Improvements and bug fix
 - v1.2.1: Minor bug fix
 - v1.2: Support Alfred 3
 - v1.1: Support Remote Desktop Connection for Windows installed VMs

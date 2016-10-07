@@ -116,7 +116,7 @@ case "$1" in
             extract_for 'guestFullName = "'
             output_info "$VALUE" "$VALUE"
 
-            if [[ $VALUE =~ Windows ]]; then
+            if [[ $VALUE =~ Windows && -n "$IP" ]]; then
             	output_item 'connect-rdc' "vm connect rdc $IP" 'Connect to Remote Desktop' 'Connect with Remote Desktop Client'
             fi
         fi
