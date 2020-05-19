@@ -4,7 +4,7 @@ ESXi Connector is an Alfred workflow that provides handy tools to work together 
 
 ## Requirements
 
-- Alfred 2 or Alfred 3 (new!)
+- Alfred 3+
 - ESXi 6.x / 7.x
 - [Enable SSH using public key](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1002866)
 
