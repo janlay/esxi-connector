@@ -102,20 +102,33 @@ case "$1" in
     'index')
         output_item 'connect-vmrc' "vm connect vmrc $3" 'Connect to Console' 'Connect with VMware Remote Console'
 
-        cache "vmsvc/power.getstate $3" '5s'
-        POWERSTATUS=$(tail +2 "$CACHE_FILE")
-        if [ "$POWERSTATUS" == "Powered on" ]; then
-            cache "vmsvc/get.guest $3"
-            output_info "$VALUE"
-
+        cache "vmsvc/get.guest $3"
+        extract_for 'guestState = "'
+        local POWERSTATUS=$VALUE
+        if [ "$POWERSTATUS" == "running" ]; then
             extract_for 'ipAddress = "'
-            IP="$VALUE"
-            output_info "$IP" "$IP"
+            local IP=$VALUE
+            output_info "$IP" "IP Address: $IP"
+
+            local dns=$(grep -A17 'net = (vim.vm.GuestInfo.NicInfo)' "$CACHE_FILE" | grep -A8 dnsConfig | grep -A1 ipAddress | tail -n1 | cut -d\" -f2)
+            output_info "$dns" "DNS Server: $dns"
+
+            local gw=$(grep -A5 'network = "0.0.0.0"' "$CACHE_FILE" | grep ipAddress | cut -d\" -f2)
+            output_info "$gw" "Gateway: $gw"
+
+            extract_for 'toolsVersion = "'
+            local toolsVersion="$VALUE"
+            if [ "$toolsVersion" =  '0' ]; then
+                output_info "" "VMware Tools not installed"
+            else
+                output_info "$toolsVersion" "VMware Tools" "Installed version: $toolsVersion"
+            fi
 
             extract_for 'guestFullName = "'
             output_info "$VALUE" "$VALUE"
 
-            if [[ $VALUE =~ Windows && -n "$IP" ]]; then
+            extract_for 'guestFamily = "'
+            if [ "$VALUE" = 'windowsGuest' -a -n "$IP" ]; then
             	output_item 'connect-rdc' "vm connect rdc $IP" 'Connect to Remote Desktop' 'Connect with Remote Desktop Client'
             fi
         fi

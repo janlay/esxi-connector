@@ -56,7 +56,7 @@ extract_in() {
 extract_for() {
     local sp="$2"
     [ -z "$2" ] && sp='"'
-    VALUE="$(cat "$CACHE_FILE" | grep -m 1 "$1" | cut -d$sp -f2)"
+    VALUE="$(grep -m 1 "$1" "$CACHE_FILE" | cut -d$sp -f2)"
 }
 
 output_start() {
