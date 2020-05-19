@@ -103,7 +103,7 @@
 	<key>createdby</key>
 	<string>Janlay Wu</string>
 	<key>description</key>
-	<string>Works together with your ESXi Server v1.2.1</string>
+	<string>Works together with your ESXi Server</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -115,6 +115,10 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -130,13 +134,11 @@
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Communication with ESXi...</string>
+				<string>Communicating with ESXi...</string>
 				<key>script</key>
-				<string>#!/bin/sh
-
-sh esxi.sh host hw "{query}"</string>
+				<string>/bin/bash esxi.sh host hw &quot;$1&quot;</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -160,6 +162,10 @@ sh esxi.sh host hw "{query}"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -175,10 +181,9 @@ sh esxi.sh host hw "{query}"</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Communication with ESXi...</string>
+				<string>Communicating with ESXi...</string>
 				<key>script</key>
-				<string># echo "query: {query}"
-sh esxi.sh host list "{query}"</string>
+				<string>/bin/bash esxi.sh host list {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -204,6 +209,10 @@ sh esxi.sh host list "{query}"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -219,13 +228,11 @@ sh esxi.sh host list "{query}"</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Communication with ESXi...</string>
+				<string>Communicating with ESXi...</string>
 				<key>script</key>
-				<string>#!/bin/sh
-
-sh esxi.sh host hw-pci "{query}"</string>
+				<string>/bin/bash esxi.sh host hw-pci &quot;$1&quot;</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -268,8 +275,35 @@ sh esxi.sh host hw-pci "{query}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>12</integer>
+				<key>script</key>
+				<string>/bin/bash esxi.sh {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CABF7158-6912-411E-9761-9E6F8497B9C6</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -285,11 +319,9 @@ sh esxi.sh host hw-pci "{query}"</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Communication with ESXi...</string>
+				<string>Communicating with ESXi...</string>
 				<key>script</key>
-				<string>#!/bin/sh
-
-sh esxi.sh {query}</string>
+				<string>/bin/bash esxi.sh {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -313,31 +345,12 @@ sh esxi.sh {query}</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>8</integer>
-				<key>script</key>
-				<string>sh esxi.sh {query}</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>CABF7158-6912-411E-9761-9E6F8497B9C6</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -353,11 +366,9 @@ sh esxi.sh {query}</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Communication with VM...</string>
+				<string>Communicating with VM...</string>
 				<key>script</key>
-				<string>#!/bin/sh
-
-sh esxi.sh vm index {query}</string>
+				<string>/bin/bash esxi.sh vm index {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -383,6 +394,10 @@ sh esxi.sh vm index {query}</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -400,11 +415,9 @@ sh esxi.sh vm index {query}</string>
 				<key>runningsubtext</key>
 				<string>Loading power status of the VM...</string>
 				<key>script</key>
-				<string>#!/bin/sh
-
-sh esxi.sh vm power {query}</string>
+				<string>/bin/bash esxi.sh vm power &quot;$1&quot;</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -425,15 +438,17 @@ sh esxi.sh vm power {query}</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Just search 'esxi' to get started.</string>
+	<string>Just search &apos;esxi&apos; to get started.
+
+ESXI_HOST must be set, format like &quot;user@esxi_host&quot; is recommended. It should be allowed login with public key, eg: root@10.0.0.2</string>
 	<key>uidata</key>
 	<dict>
 		<key>0CA21F79-A60B-4FC4-8DBE-6DEDE354BDDD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>700</integer>
+			<integer>890</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>310</integer>
 		</dict>
 		<key>29D790D1-C726-4D9C-B85C-C44202671369</key>
 		<dict>
@@ -480,11 +495,22 @@ sh esxi.sh vm power {query}</string>
 		<key>CABF7158-6912-411E-9761-9E6F8497B9C6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>700</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>310</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>ESXI_HOST</key>
+		<string></string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>ESXI_HOST</string>
+	</array>
+	<key>version</key>
+	<string>1.2.2</string>
 	<key>webaddress</key>
 	<string>http://janlay.com</string>
 </dict>

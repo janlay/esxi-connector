@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 source utils.sh
 
-init
+main() {
 
 case "$1" in
 '' | 'host')
@@ -22,11 +22,10 @@ case "$1" in
         output_item 'esxi-clear' 'clear' 'Clear Cache' 'Try this if you want fresh news'
         ;;
     'list')
-        QUERY="$(echo "$3" | xargs)"
         output_flush
         cache 'vmsvc/getallvms'
-        cat "$CACHE_FILE" | tail +2 | cut -c 1-24 | grep -i "$QUERY" | awk -f vmrc.awk
-        output_item 'esxi-host-index' 'call esxi' 'Return to ESXi Home'
+        cat "$CACHE_FILE" | tail +2 | awk -f vmrc.awk
+        output_item 'esxi-host-index' 'call esxi' 'Return to ESXi Home' ''
         ;;
     'hw')
         cache 'hostsvc/hosthardware' '1m'
@@ -179,10 +178,14 @@ case "$1" in
     ;;
 'call')
     shift
-    osascript -e "tell application \"Alfred $ALFREDVERSION\" to search \"$* \""
+    osascript -e "tell application \"Alfred $ALFREDVERSION\" to search \"$*\""
     exit 0
     ;;
 esac
+}
 
+init
+output_start
+main $*
 output_end
 

@@ -1,11 +1,11 @@
 #!/usr/bin/awk -f
 
 BEGIN {
-    FS="[ \t]{2,}"
+    FS="[[:space:]][[:space:]]+"
 }
 
 {
-    system(". utils.sh;output_item vm-"$1" call\\ vm\\ "$1" '"$2"' 'vmid:\ "$1"';output_flush")
+    system(". utils.sh; output_item 'vm-index-" $1 "' 'call vm " $1 "' '" $2 "' '" $6 ", vmid: "$1", schema: " $5 "'; output_flush")
 }
 
 END {
