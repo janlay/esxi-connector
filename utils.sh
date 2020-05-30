@@ -1,19 +1,9 @@
 #!/bin/bash
 
-ALFREDVERSION=TBD
-CACHE_DIR=TBD
+CACHE_FILE=TBD
 OUTPUT=()
 
-init() {
-    local dir=$(ls -d $HOME/Library/Application\ Support/Alfred\ * | sort | tail -n1)
-    ALFREDVERSION=${dir: -1}
 
-    # init caching
-    CACHE_DIR="$HOME/Library/Caches/com.runningwithcrayons.Alfred-$ALFREDVERSION/Workflow Data/com.janlay.esxi"
-    [ -d "$CACHE_DIR" ] || mkdir -p "$CACHE_DIR"
-}
-
-CACHE_FILE=""
 cache() {
     local cachevalidin="1d"
     [ -z "$2" ] || cachevalidin="$2"
@@ -21,7 +11,7 @@ cache() {
     [ -z "$3" ] || cmd="$3"
 
     local FILENAME=$(echo "$1" | tr \ / _)
-    local FILEPATH="$CACHE_DIR/cache_$FILENAME"
+    local FILEPATH="$alfred_workflow_cache/cache_$FILENAME"
 
     # echo "cmd: find \"$FILEPATH\" -type f -mtime +$cachevalidin -print0"
     find "$FILEPATH" -type f -mtime +$cachevalidin -print0 2> /dev/null | xargs -0 rm
@@ -38,7 +28,7 @@ cache() {
 
 execute() {
     local FILENAME=$(echo "$1" | tr \ / _)
-    local FILEPATH="$CACHE_DIR/$FILENAME"
+    local FILEPATH="$alfred_workflow_cache/$FILENAME"
 
     ssh $ESXI_HOST "vim-cmd $1" > "$FILEPATH" 2>&1
     if [ $? -ne 0 ]; then
